@@ -1,0 +1,10 @@
+<resources>
+     <item name="ask_rating_number_of_launches" type="integer">3</item>
+     <item name="ask_sharing_number_of_launches" type="integer">2</item>
+     <item name="ask_like_fb_number_of_launches" type="integer">4</item>
+     <item name="ask_follow_twitter_number_of_launches" type="integer">1</item>
+         
+     <item name="facebook_page_id" type="string">"119191568096686"</item>
+     <item name="twitter_profile" type="string">appoke</item>
+     <item name="package_name" type="string">com.appoke.hello.world</item>
+ </resources>
