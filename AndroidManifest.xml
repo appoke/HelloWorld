@@ -3,17 +3,21 @@
     package="com.appoke.hello.world"
     android:versionCode="1"
     android:versionName="1.0" >
- 	<uses-permission android:name="android.permission.INTERNET"/>
-    <uses-sdk android:targetSdkVersion="14" android:minSdkVersion="3" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-sdk
+        android:minSdkVersion="3"
+        android:targetSdkVersion="14" />
 
     <application
+        android:debuggable="false"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" 
-        android:debuggable="false">
+        android:label="@string/app_name" >
         <activity
-            android:label="@string/app_name"
-            android:name=".HelloWorldActivity" >
-            <intent-filter >
+            android:name=".HelloWorldActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,14 +25,15 @@
         </activity>
         
         <activity
-            
-            android:launchMode="singleTask"
             android:name="com.appoke.sdk.ShareActivity"
+            android:launchMode="singleTask"
             android:theme="@android:style/Theme.Dialog" >
-            <intent-filter >
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="@string/package_name"
                     android:scheme="appokesdk" />
@@ -37,29 +42,23 @@
 
         <service
             android:name="com.appoke.sdk.CommunicationService"
-            android:process=":AppokeSDK" >
-        </service>   
+            android:process=":AppokeSDK" />
+
+        <receiver android:name="com.appoke.sdk.AppokeTrackingReceiver" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
         
-        <receiver android:name=".TestReceiver">
-			<intent-filter>
-				<action android:name="com.appoke.sdk.APP_SHARED" />
-				<data
+        <receiver android:name=".TestReceiver" >
+            <intent-filter>
+                <action android:name="com.appoke.sdk.APP_SHARED" />
+
+                <data
                     android:host="@string/package_name"
                     android:scheme="appokesdk" />
-			</intent-filter>
-		</receiver>
+            </intent-filter>
+        </receiver>
     </application>
 
-   			
-    <!-- Used for install referrer tracking -->
-	<receiver android:name="com.appoke.sdk.AppokeTrackingReceiver" android:exported="true">
-	  <intent-filter>
-	    <action android:name="com.android.vending.INSTALL_REFERRER" />
-	  </intent-filter>
-	  <meta-data android:name="forward.GoogleAnalytics"
-                      android:value="com.google.android.apps.analytics.AnalyticsReceiver" />
-		
-	</receiver>
-        
-        
 </manifest>
